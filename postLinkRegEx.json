@@ -1,0 +1,41 @@
+{
+    "expression": "/^https:\/\/forum.duolingo.com\/comment\/[0-9]{8}/g",
+    "tests": [
+        {   
+            "text": "https://forum.duolingo.com/comment/28117660",
+            "match": "FULL"
+        },
+        {   
+            "text": "https://forum.duolingo.com/comment/41172877",
+            "match": "FULL"
+        },
+        {
+            "text": "https://forum.duolingo.com/comment/41172877abacaba",
+            "match": "ANY"
+        },
+        {   
+            "text": "https://www.duolingo.com/learn",
+            "match": "NONE"
+        },
+        {   
+            "text": "https://www.duolingo.com/learn?https://forum.duolingo.com/comment/28117660",
+            "match": "NONE"
+        },
+        {   
+            "text": "https://forum.duolingo.com/",
+            "match": "NONE"
+        },
+        {   
+            "text": "https://forum.duolingo.com/comment/abacaba",
+            "match": "NONE"
+        },
+        {   
+            "text": "https://www.duolingo.com/learn",
+            "match": "NONE"
+        },
+        {   
+            "text": "https://forum.duolingo.com/comment/41172",
+            "match": "NONE"
+        }
+    ]
+}
