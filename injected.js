@@ -21,10 +21,10 @@ function checkPosts () {
                     normalButton.addEventListener("click", () => {onNormalButton(normalButton)});
                     normalButtonSpan.insertAdjacentElement('afterend', genGiveLingotsButton(normalButton));
                 } else {
-                    console.error("Tag of first child of first child of _2zt48 was not an a tag - this very likely beans you were banned from sending lingots ;(");
+                    console.error("Tag of first child of first child of _2zt48 was not an a tag - this likely means you're out of lingots ;(");
                 }
             } else {
-                console.error("Couldn't find first child of _2zt48 - this likely means you were restricted from sending lingots ;(");
+                console.error("Couldn't find first child of _2zt48 - this likely means you're out of lingots ;(");
             }
             donePosts.push(post);
         }
@@ -59,7 +59,7 @@ function genGiveLingotsButton(normalButton) {
 }
 
 async function handleGiveLingotsClick(event, normalButton) {
-    var response = prompt("How many lingots? (Note: you only need to press OK for the first alert; times out after 5 seconds)");
+    var response = prompt("How many lingots? This may take a while due to intentional speed limits applied by Duolingo, there will be an alert when sending is complete w/ progress updates in console. (Note: you only need to press OK for the first alert; times out after 5 seconds)");
     var count = Number.parseInt(response);
     if (Number.isSafeInteger(count) && count > 0) {
         onNextLove = {
@@ -67,7 +67,7 @@ async function handleGiveLingotsClick(event, normalButton) {
             count: count
         };
         normalButton.click();
-        setTimeout(() => {onNextLove.normalButton = undefined}, 5000);
+        onNextLove.timeout = setTimeout(() => {onNextLove.normalButton = undefined}, 5000);
     } else {
         alert("Invalid value");
     }
@@ -80,6 +80,8 @@ chrome.runtime.onMessage.addListener(async (request) => {
         url = request.value;
         if (onNextLove && Number.isSafeInteger(onNextLove.count)) {
             var count = onNextLove.count;
+            clearTimeout(onNextLove.timeout);
+            onNextLove = undefined;
             for (let i = 1; i < count; i++) {
                 await fetch(
                     request.value,
@@ -88,7 +90,7 @@ chrome.runtime.onMessage.addListener(async (request) => {
                         credentials: "include"
                     }
                 );
-                console.log("gave lingot")
+                console.log(`Gave lingot ${i}/${count}.`);
             }
         }
     }
