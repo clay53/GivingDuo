@@ -1,4 +1,4 @@
-const postLinkRegEx = /^https:\/\/forum.duolingo.com\/comment\/[0-9]{8}/g;
+const postLinkRegEx = /^https:\/\/forum.duolingo.com\/comment\/[0-9]+/g;
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status == "complete" && tab.url.match(postLinkRegEx)) {

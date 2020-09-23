@@ -1,6 +1,6 @@
 {
   "name": "Giving Duo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "permissions": [
     "https://forum.duolingo.com/comment/*",
     "https://forum-api.duolingo.com/comments/*/love",

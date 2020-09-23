@@ -90,7 +90,7 @@ chrome.runtime.onMessage.addListener(async (request) => {
                         credentials: "include"
                     }
                 );
-                console.log(`Gave lingot ${i}/${count}.`);
+                console.log(`Gave lingot ${i+1}/${count}.`);
             }
         }
     }
