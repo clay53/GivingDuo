@@ -1,6 +1,8 @@
 # Giving Duo
 Browser extension for giving more than one lingot on Duolingo.
 
+NOTE: Lingots seem to be being deprecated on Dulingo so sending takes a ridiculously long time. This plugin will not be developed further developed officially (pull request still open) until a clear decision is made by Duolingo.
+
 # Install
 
 ### [Chrome](https://chrome.google.com/webstore/detail/giving-duo/lacfjcephcjbihliackggaifbkbiimfl)
